@@ -49,7 +49,7 @@ def load_config() -> AppConfig:
         openai_api_key=os.getenv("OPENAI_API_KEY"),
         llama_cloud_api_key=os.getenv("LLAMA_CLOUD_API_KEY"),
         pinecone_api_key=os.getenv("PINECONE_API_KEY"),
-        openai_chat_model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o"),
+        openai_chat_model=os.getenv("OPENAI_CHAT_MODEL", "gpt-4o-mini"),
         openai_embedding_model=os.getenv(
             "OPENAI_EMBEDDING_MODEL",
             "text-embedding-3-small",
