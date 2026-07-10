@@ -37,3 +37,27 @@ To run this application on your local machine:
 ```bash
 git clone [https://github.com/hetpatel-7/Agentic-Catalog-Engine.git](https://github.com/hetpatel-7/Agentic-Catalog-Engine.git)
 cd Agentic-Catalog-Engine
+```
+
+**2. Create a virtual environment and install dependencies:**
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+pip install -r requirements.txt
+```
+
+**3. Configure Environment Variables:**
+Create a .env file in the root directory and add your API keys:
+```bash
+OPENAI_API_KEY="your_openai_api_key"
+LLAMA_CLOUD_API_KEY="your_llamaparse_api_key"
+```
+
+**4. Launch the application:**
+```bash
+streamlit run app.py
+```
+
+## 🌐 Live Demo
+* The application is deployed live via Hugging Face Spaces.
+[Click here to interact with the live Agentic Catalog Engine]((https://example.com))
