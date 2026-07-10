@@ -1,0 +1,99 @@
+Product Requirement Document (PRD)
+Project Title: Agentic Catalog Engine (ACE)
+Author: Het Patel
+
+Target Role: AI Applications & Automation Engineer
+
+Deployment Platform: Hugging Face Spaces (Streamlit + Docker)
+
+1. Executive Summary & Objective
+FilmTools ACE is a production-ready, mobile-responsive prototype built to solve core workflow friction in the e-commerce film retail industry. The system automates the processing of chaotic, unstructured manufacturer equipment manuals, converts them into structurally validated catalog attributes, and exposes that data via an interactive, context-aware semantic search chatbot for production crews.
+
+2. Core User Personas
+The FilmTools Catalog Team: Needs to ingest massive, complex equipment manuals (often 50+ pages) and cleanly extract accurate technical specifications into structured databases without hours of manual parsing.
+
+The Production Crew / Customer: Needs a fast, conversational interface (accessible on desktop or mobile on-set) to ask nuanced, natural-language technical questions about camera and lighting gear.
+
+3. System Architecture & Data Pipeline
+The application leverages a deterministic, 3-stage AI pipeline designed to maximize data extraction fidelity while minimizing compute cost.
+
+[User Upload (PDF/Docx/Txt)] 
+           │
+           ▼
+┌──────────────────────────────────────┐
+│       1. ROUTING & PARSING           │
+│  - Unstructured.io (Standard Files)  │
+│  - LlamaParse API (Complex PDFs)     │
+└──────────────────────────────────────┘
+           │ (Clean Markdown)
+           ▼
+┌──────────────────────────────────────┐
+│       2. STRUCTURED EXTRACTION       │
+│  - Instructor + Pydantic Schema      │
+│  - GPT-4o Enforcement                │
+└──────────────────────────────────────┘
+           │ (Validated JSON Database File)
+           ▼
+┌──────────────────────────────────────┐
+│        3. SEMANTIC CHATBOT           │
+│  - OpenAI Embeddings Engine          │
+│  - ChromaDB / Pinecone Vector Store   │
+│  - LangChain + FIFO Memory Queue     │
+└──────────────────────────────────────┘
+4. Functional Requirements
+FR-1: Intelligent Ingestion Routing
+Requirement: The app must accept multi-format file uploads (.pdf, .txt, .docx) natively on desktop and mobile web browsers.
+
+Implementation:
+
+Standard Formats: Handled locally using unstructured.io to parse text streams instantly and efficiently.
+
+Complex Layouts: Multi-column PDFs and technical specification charts bypass standard OCR and route to the LlamaParse API to maintain layout semantics and structural integrity.
+
+FR-2: Schema-Driven Attribute Extraction
+Requirement: The system must transform raw markdown/text into a perfectly formatted, schema-validated JSON database payload.
+
+Implementation:
+
+Utilizes the Instructor library to patch the OpenAI API client.
+
+Enforces a strict Pydantic data model reflecting the FilmTools gear catalog requirements:
+
+Python
+from pydantic import BaseModel
+from typing import List
+
+class CameraGearCatalogEntry(BaseModel):
+    brand: str
+    model: str
+    sensor_size: str
+    lens_mount: str
+    supported_resolutions: List[str]
+    weight_grams: float
+    power_consumption_watts: float
+Guarantees zero conversational "fluff" from the LLM, outputting pure JSON.
+
+FR-3: Local Semantic Sandbox & Conversational Chatbot
+Requirement: Users must be able to interrogate the extracted technical documentation via a natural language chat interface.
+
+Implementation:
+
+Text streams are chunked and embedded via text-embedding-3-small.
+
+Vectors are indexed inside a lightweight database layer (ChromaDB or Pinecone).
+
+The chatbot uses LangChain to orchestrate retrieval-augmented generation (RAG).
+
+Memory Guardrail: Implements a rolling memory buffer utilizing a FIFO (First-In, First-Out) logic queue to drop oldest historical context turns. This prevents token expansion, reduces latency, and blocks repetitive conversational loops.
+
+5. Non-Functional Requirements
+Security & Environment Isolation: Production API keys (OpenAI, LlamaIndex) must never be hardcoded. They are managed as hidden environment variables within the Hugging Face Space repository secrets.
+
+Responsive UI: Built entirely using Streamlit components to ensure native mobile layout reflow, letting on-set filmmakers use the app seamlessly from their phones.
+
+Portability: The entire application runtime environment is containerized using Docker, isolating system dependencies (like PDF rendering libraries) for stable, cross-platform deployment.
+
+6. Project Success Metrics (The "AI Multiplier")
+Ingestion Speed: Drops manual catalog asset-matching and attribute mapping from hours down to < 30 seconds per manual.
+
+Data Integrity: Achieves a 100% format-compliance rate for downstream catalog database injection through Pydantic constraint verification.
