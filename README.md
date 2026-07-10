@@ -7,6 +7,7 @@ sdk: gradio
 sdk_version: "6.20.0"
 app_file: app.py
 pinned: false
+python_version: "3.11"
 ---
 
 An end-to-end AI application built to solve data friction in e-commerce workflows. ACE automates the extraction of dense technical specifications from chaotic manufacturer manuals (PDFs, DOCX, TXT), validates the outputs into structured JSON schemas, and serves the data through an interactive, semantic search chatbot.
