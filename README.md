@@ -35,5 +35,5 @@ To run this application on your local machine:
 
 **1. Clone the repository:**
 ```bash
-git clone [https://github.com/your-username/Agentic-Catalog-Engine.git](https://github.com/your-username/Agentic-Catalog-Engine.git)
+git clone [https://github.com/hetpatel-7/Agentic-Catalog-Engine.git](https://github.com/hetpatel-7/Agentic-Catalog-Engine.git)
 cd Agentic-Catalog-Engine
