@@ -16,7 +16,7 @@ pydantic==2.13.4
 
 # LLM, embeddings, and vector stores
 openai==2.45.0
-pinecone==9.1.0
+pinecone
 chromadb==1.5.9
 
 # Environment management
