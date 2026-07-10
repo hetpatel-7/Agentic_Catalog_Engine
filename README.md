@@ -60,4 +60,4 @@ streamlit run app.py
 
 ## 🌐 Live Demo
 * The application is deployed live via Hugging Face Spaces.
-[Click here to interact with the live Agentic Catalog Engine]((https://example.com))
+* [Click here to interact with the live Agentic Catalog Engine]((https://example.com))
