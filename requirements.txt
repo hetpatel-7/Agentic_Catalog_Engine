@@ -8,7 +8,7 @@ langchain-pinecone==0.2.13
 
 # Document parsing
 llama-parse==0.6.94
-unstructured[pdf,docx]==0.24.0
+unstructured[pdf,docx]
 
 # Structured extraction and validation
 instructor==1.15.4
