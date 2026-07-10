@@ -525,7 +525,6 @@ def build_interface() -> gr.Blocks:
                 gr.Markdown("## Semantic Chat Sandbox")
                 chatbot = gr.Chatbot(
                     label="ACE Catalog Chat",
-                    type="messages",
                     height=520,
                 )
                 question_input = gr.Textbox(
