@@ -80,4 +80,4 @@ python app.py
 
 ## 🌐 Live Demo
 * The application is deployed live via Hugging Face Spaces.
-* [Click here to interact with the live Agentic Catalog Engine]((https://huggingface.co/spaces/hetpatel-7/Agentic-Catalog-Engine))
+* [Click here to interact with the live Agentic Catalog Engine](https://huggingface.co/spaces/hetpatel-7/Agentic-Catalog-Engine)
